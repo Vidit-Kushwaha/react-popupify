@@ -9,8 +9,14 @@ export const App = () => {
   return (
     <>
       <div>
-        <button onClick={()=>setIsOpen(!isOpen)}>Open Popup</button>
-        <Popup ref={popupRef} open={isOpen} closeOnEscape={false} closeOnOutsideClick={false} >
+        <button onClick={() => setIsOpen(!isOpen)}>Open Popup</button>
+        <Popup
+          ref={popupRef}
+          open={isOpen}
+          closeOnEscape={false}
+          closeOnOutsideClick={false}
+          closeButton={true}
+        >
           <p>This is the content of the popup.</p>
         </Popup>
       </div>

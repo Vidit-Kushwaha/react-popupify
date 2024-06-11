@@ -6,11 +6,13 @@ import React, {
   useState,
 } from 'react'
 import ReactDOM from 'react-dom'
-import { PopupHandle, PopupOptions } from './type'
+import { PopupHandle, PopupProps } from './type'
 import useOutsideClick from './hooks/useOutsideClick'
 import useEscapeKey from './hooks/useEsc'
+import CloseButton from './components/CloseButton'
+import './styles/index.scss'
 
-const Popup = forwardRef<PopupHandle, PopupOptions>(
+const Popup = forwardRef<PopupHandle, PopupProps>(
   (
     {
       open = false,
@@ -18,6 +20,7 @@ const Popup = forwardRef<PopupHandle, PopupOptions>(
       children,
       closeOnEscape = true,
       closeOnOutsideClick = true,
+      closeButton = true,
     },
     ref
   ) => {
@@ -52,6 +55,21 @@ const Popup = forwardRef<PopupHandle, PopupOptions>(
     closeOnOutsideClick && useOutsideClick(rootRef, handleClose)
     closeOnEscape && useEscapeKey(handleClose)
 
+    const CloseButtonProps = {
+      closePopup: handleClose,
+    }
+    let Close: React.ReactNode = null
+
+    if (closeButton) {
+      if (typeof closeButton === 'function') {
+        Close = CloseButton(CloseButtonProps)
+      } else if (React.isValidElement(closeButton)) {
+        Close = React.cloneElement(closeButton, CloseButtonProps)
+      } else {
+        Close = CloseButton(CloseButtonProps)
+      }
+    }
+
     const content = (
       <div
         className={className}
@@ -78,6 +96,7 @@ const Popup = forwardRef<PopupHandle, PopupOptions>(
             borderRadius: '5px',
           }}
         >
+          {Close}
           {children}
         </div>
       </div>

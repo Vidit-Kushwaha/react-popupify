@@ -1,4 +1,4 @@
-import React from "react"
+import React from 'react'
 
 export interface PopupHandle {
   open: () => void
@@ -11,7 +11,6 @@ export interface CloseButtonProps {
 }
 
 export type Id = number | string
-
 
 interface CommonOptions {
   children: React.ReactNode
