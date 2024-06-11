@@ -1,0 +1,49 @@
+@mixin timing-function {
+  animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+@keyframes #{$namespace}_bounceIn {
+  from,
+  60%,
+  75%,
+  90%,
+  to {
+    @include timing-function;
+  }
+  from {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  75% {
+    transform: scale(0.95);
+  }
+  90% {
+    transform: scale(1.02);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes #{$namespace}_bounceOut {
+  20% {
+    opacity: 1;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+}
+
+.#{$namespace}_bounce-enter {
+    animation-name: #{$namespace}_bounceIn;
+}
+
+.#{$namespace}_bounce-exit {
+    animation-name: #{$namespace}_bounceOut;
+}
