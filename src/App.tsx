@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import { PopupHandle } from './type'
-import Popup from './Popup'
+import Popup from './components/Popup'
 
 export const App = () => {
   const [isOpen, setIsOpen] = React.useState(false)

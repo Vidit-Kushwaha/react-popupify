@@ -6,11 +6,11 @@ import React, {
   useState,
 } from 'react'
 import ReactDOM from 'react-dom'
-import { PopupHandle, PopupProps } from './type'
-import useOutsideClick from './hooks/useOutsideClick'
-import useEscapeKey from './hooks/useEsc'
-import CloseButton from './components/CloseButton'
-import { Transition } from './components/Transition'
+import { PopupHandle, PopupProps } from '../type'
+import useOutsideClick from '../hooks/useOutsideClick'
+import useEscapeKey from '../hooks/useEsc'
+import CloseButton from './CloseButton'
+import { Transition } from './Transition'
 import './styles/index.scss'
 
 const Popup = forwardRef<PopupHandle, PopupProps>(
