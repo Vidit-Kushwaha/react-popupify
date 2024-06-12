@@ -1,6 +1,6 @@
 import React from 'react'
 import { CloseButtonProps } from '../type'
-import { DefaultConfing } from '../utils/constant'
+import { DefaultConfig } from '../utils/constant'
 
 const CloseButton: React.FC<CloseButtonProps> = ({
   ariaLabel = 'Close',
@@ -8,7 +8,7 @@ const CloseButton: React.FC<CloseButtonProps> = ({
 }) => {
   return (
     <button
-      className={`${DefaultConfing.CSS_NAMESPACE}-close-button`}
+      className={`${DefaultConfig.CSS_NAMESPACE}_close-button`}
       type="button"
       onClick={(e) => {
         e.stopPropagation()

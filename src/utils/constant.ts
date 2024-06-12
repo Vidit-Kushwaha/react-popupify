@@ -1,5 +1,5 @@
-const DefaultConfing = {
+const DefaultConfig = {
   CSS_NAMESPACE: 'nc-Popupify',
 }
 
-export { DefaultConfing }
+export { DefaultConfig }
