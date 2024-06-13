@@ -5,24 +5,28 @@ import React, {
   useRef,
   useState,
 } from 'react'
-import ReactDOM from 'react-dom'
 import { PopupHandle, PopupProps } from '../type'
 import useOutsideClick from '../hooks/useOutsideClick'
 import useEscapeKey from '../hooks/useEsc'
 import CloseButton from './CloseButton'
 import { Transition } from './Transition'
-import './styles/index.scss'
 
-const Popup = forwardRef<PopupHandle, PopupProps>(
+type PopupPropsExtended = PopupProps & {
+  onClickClose?: (isClose: Boolean) => void
+}
+
+const Popup = forwardRef<PopupHandle, PopupPropsExtended>(
   (
     {
       open = false,
-      className = '',
       children,
       closeOnEscape = true,
       closeOnOutsideClick = true,
       closeButton = true,
-      popupId,
+      animation,
+      duration,
+      onClose,
+      onClickClose,
     },
     ref
   ) => {
@@ -38,19 +42,9 @@ const Popup = forwardRef<PopupHandle, PopupProps>(
       close: () => setIsOpen(false),
     }))
 
-    const getRootPopup = () => {
-      let popupElment = document.getElementById('popup-root')
-
-      if (popupElment === null) {
-        popupElment = document.createElement('div')
-        popupElment.setAttribute('id', 'popup-root')
-        document.body.appendChild(popupElment)
-      }
-
-      return popupElment
-    }
-
     const handleClose = () => {
+      onClickClose && onClickClose(false)
+      onClose && onClose()
       setIsOpen(false)
     }
 
@@ -72,48 +66,14 @@ const Popup = forwardRef<PopupHandle, PopupProps>(
       }
     }
 
-    const content = (
-      <div
-        className={className}
-        id={popupId as string}
-        style={{
-          display: isOpen ? 'block' : 'none',
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          backgroundColor: 'rgba(0, 0, 0, 0.5)',
-          zIndex: 9999,
-          animationDuration: '400ms'
-        }}
-      >
-        <div
-          style={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-          }}
-        >
-          <Transition animation="flip" in={isOpen} duration={400}>
-            <div
-              ref={rootRef}
-              style={{
-                backgroundColor: 'white',
-                padding: '20px',
-                borderRadius: '5px',
-              }}
-            >
-              {Close}
-              {children}
-            </div>
-          </Transition>
+    return (
+      <Transition animation={animation} in={isOpen} duration={duration}>
+        <div ref={rootRef} className="nc-Popupify_popup">
+          <div>{children}</div>
+          {Close}
         </div>
-      </div>
+      </Transition>
     )
-
-    return isOpen ? ReactDOM.createPortal(content, getRootPopup()) : null
   }
 )
 
