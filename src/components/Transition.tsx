@@ -1,14 +1,6 @@
 import React, { useEffect, useLayoutEffect, useRef } from 'react'
 import { DefaultConfig } from '../utils/constant'
-
-export type TransitionProps = {
-  animation: 'bounce' | 'flip' | 'zoom' | 'fade'
-  duration?: number
-  children: React.ReactNode
-  in: boolean
-  onEntered?: () => void
-  onExited?: () => void
-}
+import { TransitionProps } from '../type'
 
 export const Transition: React.FC<TransitionProps> = ({
   animation,
