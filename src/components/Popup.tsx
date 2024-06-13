@@ -27,15 +27,12 @@ const Popup = forwardRef<PopupHandle, PopupPropsExtended>(
       duration,
       onClose,
       onClickClose,
+      autoClose,
     },
     ref
   ) => {
     const [isOpen, setIsOpen] = useState(open)
     const rootRef = useRef<HTMLDivElement | null>(null)
-
-    useEffect(() => {
-      setIsOpen(open)
-    }, [open])
 
     useImperativeHandle(ref, () => ({
       open: () => setIsOpen(true),
@@ -47,6 +44,20 @@ const Popup = forwardRef<PopupHandle, PopupPropsExtended>(
       onClose && onClose()
       setIsOpen(false)
     }
+
+    useEffect(() => {
+      setIsOpen(open)
+
+      if (autoClose && open) {
+        const timer = setTimeout(() => {
+          handleClose()
+        }, autoClose)
+
+        return () => {
+          clearTimeout(timer)
+        }
+      }
+    }, [open])
 
     closeOnOutsideClick && useOutsideClick(rootRef, handleClose)
     closeOnEscape && useEscapeKey(handleClose)

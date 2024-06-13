@@ -41,7 +41,7 @@ const PopupContainer = forwardRef<HTMLDivElement, PopupContainerProps>(
     const content = (
       <div
         ref={containerRef}
-        className={`nc-Popupify_popup-container ${!isOpen ? 'closing' : ''}`}
+        className={`nc-Popupify_popup-container`}
       >
         <Popup
           ref={popupRef}
