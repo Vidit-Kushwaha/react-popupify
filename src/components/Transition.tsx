@@ -2,7 +2,7 @@ import React, { useEffect, useLayoutEffect, useRef } from 'react'
 import { DefaultConfig } from '../utils/constant'
 import { TransitionProps } from '../type'
 
-export const Transition: React.FC<TransitionProps> = ({
+const Transition: React.FC<TransitionProps> = ({
   animation,
   duration = 300,
   children,
@@ -60,3 +60,5 @@ export const Transition: React.FC<TransitionProps> = ({
 
   return <div ref={nodeRef}>{children}</div>
 }
+
+export default Transition

@@ -11,7 +11,7 @@ import { PopupHandle, PopupProps } from '../type'
 import useOutsideClick from '../hooks/useOutsideClick'
 import useEscapeKey from '../hooks/useEsc'
 import CloseButton from './CloseButton'
-import { Transition } from './Transition'
+import Transition from './Transition'
 import { DefaultConfig } from '../utils/constant'
 
 type PopupPropsExtended = PopupProps & {
@@ -32,7 +32,7 @@ const Popup = forwardRef<PopupHandle, PopupPropsExtended>(
       onClickClose,
       autoClose,
       popupClassName,
-      popupId
+      popupId,
     },
     ref
   ) => {
