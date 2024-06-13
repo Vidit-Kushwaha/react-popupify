@@ -3,6 +3,7 @@ import Popup from './Popup'
 import { PopupContainerProps, PopupHandle, defualtProps } from '../type'
 import '../styles/index.scss'
 import { forwardRef, useEffect, useRef, useState } from 'react'
+import { DefaultConfig } from '../utils/constant'
 
 const defaultProps: defualtProps = {
   autoClose: false,
@@ -41,7 +42,7 @@ const PopupContainer = forwardRef<HTMLDivElement, PopupContainerProps>(
     const content = (
       <div
         ref={containerRef}
-        className={`nc-Popupify_popup-container`}
+        className={`${DefaultConfig.CSS_NAMESPACE}_popup-container`}
       >
         <Popup
           ref={popupRef}

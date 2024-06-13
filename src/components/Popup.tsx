@@ -10,6 +10,7 @@ import useOutsideClick from '../hooks/useOutsideClick'
 import useEscapeKey from '../hooks/useEsc'
 import CloseButton from './CloseButton'
 import { Transition } from './Transition'
+import { DefaultConfig } from '../utils/constant'
 
 type PopupPropsExtended = PopupProps & {
   onClickClose?: (isClose: Boolean) => void
@@ -79,9 +80,9 @@ const Popup = forwardRef<PopupHandle, PopupPropsExtended>(
 
     return (
       <Transition animation={animation} in={isOpen} duration={duration}>
-        <div ref={rootRef} className="nc-Popupify_popup">
-          <div>{children}</div>
-          {Close}
+        <div ref={rootRef} className={`${DefaultConfig.CSS_NAMESPACE}_popup`}>
+          {children}
+          <div className="button-close">{Close}</div>
         </div>
       </Transition>
     )
