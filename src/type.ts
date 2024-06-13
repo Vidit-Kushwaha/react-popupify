@@ -37,9 +37,7 @@ interface CommonOptions {
 
 export interface PopupProps extends CommonOptions {
   children: React.ReactNode
-  style?: React.CSSProperties
   popupId?: Id
-  delay?: number
   animation: Animation
   duration: number
   popupClassName?: string

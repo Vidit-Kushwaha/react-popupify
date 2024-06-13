@@ -32,6 +32,7 @@ const Popup = forwardRef<PopupHandle, PopupPropsExtended>(
       onClickClose,
       autoClose,
       popupClassName,
+      popupId
     },
     ref
   ) => {
@@ -85,6 +86,7 @@ const Popup = forwardRef<PopupHandle, PopupPropsExtended>(
       <Transition animation={animation} in={isOpen} duration={duration}>
         <div
           ref={rootRef}
+          id={popupId as string}
           className={`${DefaultConfig.CSS_NAMESPACE}_popup ${popupClassName}`}
         >
           {children}
