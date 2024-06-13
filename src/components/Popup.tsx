@@ -1,3 +1,5 @@
+'use client'
+
 import React, {
   forwardRef,
   useEffect,
@@ -29,6 +31,7 @@ const Popup = forwardRef<PopupHandle, PopupPropsExtended>(
       onClose,
       onClickClose,
       autoClose,
+      popupClassName,
     },
     ref
   ) => {
@@ -80,7 +83,10 @@ const Popup = forwardRef<PopupHandle, PopupPropsExtended>(
 
     return (
       <Transition animation={animation} in={isOpen} duration={duration}>
-        <div ref={rootRef} className={`${DefaultConfig.CSS_NAMESPACE}_popup`}>
+        <div
+          ref={rootRef}
+          className={`${DefaultConfig.CSS_NAMESPACE}_popup ${popupClassName}`}
+        >
           {children}
           <div className="button-close">{Close}</div>
         </div>

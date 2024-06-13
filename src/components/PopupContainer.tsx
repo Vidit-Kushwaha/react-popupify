@@ -1,3 +1,5 @@
+'use client'
+
 import ReactDOM from 'react-dom'
 import Popup from './Popup'
 import { PopupContainerProps, PopupHandle, defualtProps } from '../type'
@@ -17,8 +19,7 @@ const defaultProps: defualtProps = {
 const PopupContainer = forwardRef<HTMLDivElement, PopupContainerProps>(
   (props, ref) => {
     const continerProps = { ...defaultProps, ...props }
-    const { open } = continerProps
-    const containerRef = useRef<HTMLDivElement | null>(null)
+    const { open, backdropClassName } = continerProps
     const popupRef = useRef<PopupHandle | null>(null)
 
     const [isOpen, setIsOpen] = useState(open)
@@ -41,8 +42,8 @@ const PopupContainer = forwardRef<HTMLDivElement, PopupContainerProps>(
 
     const content = (
       <div
-        ref={containerRef}
-        className={`${DefaultConfig.CSS_NAMESPACE}_popup-container`}
+        ref={ref}
+        className={`${DefaultConfig.CSS_NAMESPACE}_popup-container ${backdropClassName}`}
       >
         <Popup
           ref={popupRef}

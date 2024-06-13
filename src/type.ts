@@ -37,16 +37,17 @@ interface CommonOptions {
 
 export interface PopupProps extends CommonOptions {
   children: React.ReactNode
-  className?: string
   style?: React.CSSProperties
   popupId?: Id
   delay?: number
   animation: Animation
   duration: number
+  popupClassName?: string
 }
 
 export interface PopupContainerProps extends PopupProps {
   children: React.ReactNode
+  backdropClassName?: string
 }
 
 export interface defualtProps extends CommonOptions {
