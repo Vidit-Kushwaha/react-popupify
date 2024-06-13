@@ -1,0 +1,23 @@
+.#{$namespace}_popup-container {
+  z-index: var(--popupify-z-index);
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  opacity: 1;
+  transition: none 10s ease-in-out;
+
+  & > div {
+    position: relative;
+    margin: auto;
+  }
+}
+
+@media #{$mobile} {
+  .#{$namespace}_popup-container {
+    width: 100vw;
+    padding: 0;
+    left: env(safe-area-inset-left);
+    margin: 0;
+  }
+}

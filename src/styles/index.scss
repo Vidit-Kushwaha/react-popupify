@@ -1,7 +1,9 @@
-$namespace: 'nc-Popupify';
+@charset "UTF-8";
 
+@import 'variables.scss';
 @import 'closeButton.scss';
+@import 'popupContainer.scss';
+@import 'popup.scss';
 
-
-// animations 
+// animations
 @import 'animations/index.scss';

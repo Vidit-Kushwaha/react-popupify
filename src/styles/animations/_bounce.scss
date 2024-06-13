@@ -41,9 +41,9 @@
 }
 
 .#{$namespace}_bounce-enter {
-    animation-name: #{$namespace}_bounceIn;
+  animation-name: #{$namespace}_bounceIn;
 }
 
 .#{$namespace}_bounce-exit {
-    animation-name: #{$namespace}_bounceOut;
+  animation-name: #{$namespace}_bounceOut;
 }

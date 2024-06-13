@@ -1,0 +1,19 @@
+.#{$namespace}_popup {
+  box-sizing: border-box;
+  --y: 0;
+  position: relative;
+  touch-action: none;
+  background-color: var(--popupify-popup-background);
+  min-height: var(--popupify-popup-min-height);
+  margin-bottom: 1rem;
+  padding: 8px;
+  border-radius: var(--popupify-popup-border-radius);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--popupify-font-family);
+  cursor: default;
+  direction: ltr;
+  z-index: 0;
+  overflow: hidden;
+}

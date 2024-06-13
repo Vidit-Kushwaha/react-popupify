@@ -1,0 +1,14 @@
+$namespace: 'nc-Popupify';
+$mobile: 'only screen and (max-width : 480px)' !default;
+
+:root {
+  --popupify-font-size: 16px;
+  --popupify-popup-background: #fff;
+
+  --popupify-font-family: sans-serif;
+  --popupify-popup-width: 400px;
+  --popupify-popup-background: #fff;
+  --popupify-popup-min-height: 64px;
+  --popupify-popup-border-radius: 6px;
+  --popupify-z-index: 9999;
+}
