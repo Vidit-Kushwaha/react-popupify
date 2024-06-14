@@ -61,6 +61,10 @@
   "bugs": {
     "url": "https://github.com/Vidit-Kushwaha/react-popupify/issues"
   },
+  "homepage": "https://github.com/Vidit-Kushwaha/react-popupify",
+  "files": [
+    "/dist"
+  ],
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
