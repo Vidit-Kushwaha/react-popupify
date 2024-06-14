@@ -1,5 +1,6 @@
 'use client'
 
+import React from 'react'
 import ReactDOM from 'react-dom'
 import Popup from './Popup'
 import { PopupContainerProps, PopupHandle, defualtProps } from '../type'
