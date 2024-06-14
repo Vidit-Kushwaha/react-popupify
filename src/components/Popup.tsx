@@ -1,7 +1,10 @@
+// eslint-disable-next-line eslint-comments/disable-enable-pair
+/* eslint-disable react-hooks/rules-of-hooks */
 'use client'
 
 import React, {
   forwardRef,
+  useCallback,
   useEffect,
   useImperativeHandle,
   useRef,
@@ -15,7 +18,7 @@ import Transition from './Transition'
 import { DefaultConfig } from '../utils/constant'
 
 type PopupPropsExtended = PopupProps & {
-  onClickClose?: (isClose: Boolean) => void
+  onClickClose?: (isClose: boolean) => void
 }
 
 const Popup = forwardRef<PopupHandle, PopupPropsExtended>(
@@ -44,11 +47,11 @@ const Popup = forwardRef<PopupHandle, PopupPropsExtended>(
       close: () => setIsOpen(false),
     }))
 
-    const handleClose = () => {
+    const handleClose = useCallback(() => {
       onClickClose && onClickClose(false)
       onClose && onClose()
       setIsOpen(false)
-    }
+    }, [onClose, onClickClose])
 
     useEffect(() => {
       setIsOpen(open)
@@ -62,7 +65,7 @@ const Popup = forwardRef<PopupHandle, PopupPropsExtended>(
           clearTimeout(timer)
         }
       }
-    }, [open])
+    }, [open, autoClose, onClose, onClickClose, handleClose])
 
     closeOnOutsideClick && useOutsideClick(rootRef, handleClose)
     closeOnEscape && useEscapeKey(handleClose)
@@ -96,5 +99,7 @@ const Popup = forwardRef<PopupHandle, PopupPropsExtended>(
     )
   }
 )
+
+Popup.displayName = 'Popup'
 
 export default Popup

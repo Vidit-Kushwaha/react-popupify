@@ -1,11 +1,11 @@
 'use client'
 
-import React from 'react'
+import React, { forwardRef, useEffect, useRef, useState } from 'react'
 import ReactDOM from 'react-dom'
 import Popup from './Popup'
 import { PopupContainerProps, PopupHandle, defualtProps } from '../type'
 import '../styles/index.scss'
-import { forwardRef, useEffect, useRef, useState } from 'react'
+
 import { DefaultConfig } from '../utils/constant'
 
 const defaultProps: defualtProps = {
@@ -59,5 +59,7 @@ const PopupContainer = forwardRef<HTMLDivElement, PopupContainerProps>(
     return isOpen ? ReactDOM.createPortal(content, getRootPopup()) : null
   }
 )
+
+PopupContainer.displayName = 'PopupContainer'
 
 export default PopupContainer

@@ -34,7 +34,7 @@ const Transition: React.FC<TransitionProps> = ({
     if (inProp) {
       startEnterAnimation()
     }
-  }, [inProp])
+  }, [inProp, onEntered, duration, enterClassName])
 
   useEffect(() => {
     const node = nodeRef.current!
@@ -56,7 +56,7 @@ const Transition: React.FC<TransitionProps> = ({
     if (!inProp) {
       startLeaveAnimation()
     }
-  }, [inProp])
+  }, [inProp, onExited, duration, leaveClassName])
 
   return <div ref={nodeRef}>{children}</div>
 }
