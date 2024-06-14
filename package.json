@@ -9,6 +9,7 @@
     "clean": "rimraf dist",
     "build": "npm run clean && npm run build:bundle",
     "build:bundle": "microbundle --jsx React.createElement --jsxFragment React.Fragment",
+    "lint": "eslint --fix \"./src/**/*.{js,jsx,ts,tsx,json}\"",
     "format": "prettier --write \"./src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -25,7 +26,14 @@
   "devDependencies": {
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "@typescript-eslint/eslint-plugin": "^7.13.0",
+    "@typescript-eslint/parser": "^7.13.0",
     "css-loader": "^7.1.2",
+    "eslint-plugin-eslint-comments": "^3.2.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "eslint-plugin-react": "^7.34.2",
+    "eslint-plugin-react-hooks": "^4.6.2",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.5",
     "microbundle": "^0.15.1",
