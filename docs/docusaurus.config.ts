@@ -24,6 +24,7 @@ const config: Config = {
       'classic',
       {
         docs: {
+          routeBasePath: "/",
           sidebarPath: './sidebars.ts',
           editUrl: 'https://github.com/vidit-kushwaha/react-popupify/',
         },
