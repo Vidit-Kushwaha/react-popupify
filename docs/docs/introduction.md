@@ -1,49 +1,38 @@
 ---
 sidebar_position: 1
-title: Installation
-sidebar_label: Installation
+title: Introduction
+sidebar_label: Introduction
 ---
 
-# Tutorial Intro
+![NPM Version](https://img.shields.io/npm/v/react-popupify?style=for-the-badge&cacheSeconds=86400)
+![NPM Downloads](https://img.shields.io/npm/dw/react-popupify?style=for-the-badge&cacheSeconds=86400)
+![npm bundle size](https://img.shields.io/bundlephobia/min/react-popupify?style=for-the-badge&cacheSeconds=86400)
+![GitHub License](https://img.shields.io/github/license/Vidit-Kushwaha/react-popupify?style=for-the-badge&cacheSeconds=86400)
 
-Let's discover **Docusaurus in less than 5 minutes**.
+## Usage
 
-## Getting Started
+import App from '../src/components/App'
 
-Get started by **creating a new site**.
+<App />
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+## Features
 
-### What you'll need
+- **Easy Integration**: Simple and intuitive API for quick integration.
+- **Custom Animations**: Supports various animation types such as `bounce`, `flip`, `zoom`, and `fade`.
+- **Auto-Close**: Option to auto-close the popup after a specified duration.
+- **Customizable Close Button**: Flexible options for close button customization.
+- **Event Handlers**: Callbacks for when the popup is entered and exited.
+- **Esc Key and Outside Click**: Configurable options to close the popup using the escape key or clicking outside.
 
-- [Node.js](https://nodejs.org/en/download/) version 18.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+## Contributing
 
-## Generate a new site
+We welcome contributions! Whether you're a seasoned developer or a curious enthusiast, there are ways to get involved:
 
-Generate a new Docusaurus site using the **classic template**.
+- **Bug fixes and improvements:** Find any issues? Submit a pull request!
+- **New features:** Have an idea for a cool feature? Let's discuss it in an issue!
+- **Documentation:** Improve the project's documentation and website.
+- **Spread the word:** Share the project with your network and help it grow!
 
-The classic template will automatically be added to your project after you run the command:
+## License
 
-```bash
-npm init docusaurus@latest my-website classic
-```
-
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
-
-The command also installs all necessary dependencies you need to run Docusaurus.
-
-## Start your site
-
-Run the development server:
-
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+Licensed under MIT

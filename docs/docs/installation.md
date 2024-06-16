@@ -6,43 +6,53 @@ sidebar_label: Installation
 
 ## Requirements
 
-- [React](https://reactjs.org) version >= 16.8 or above 
+- [React](https://reactjs.org) version >= 18 or above 
 
-## Installation
+## With npm:
 
-With npm:
 ```sh
-npm install --save react-toastify
+  npm i react-popupify
 ```
 
-With yarn:
-```
-yarn add react-toastify
+## Css:
+
+```html
+import "react-popupify/dist/bundle.css";
 ```
 
-## The gist
+## Usage Example
 
 ```jsx
-  import React from 'react';
-  import { ToastContainer, toast } from 'react-toastify';
+import React, { useState } from 'react'
+import { PopupContainer } from 'react-popupify'
+import "react-popupify/dist/bundle.css";
 
-  import 'react-toastify/dist/ReactToastify.css';
-  // minified version is also included
-  // import 'react-toastify/dist/ReactToastify.min.css';
+const ExampleComponent = () => {
+  const [isOpen, setIsOpen] = useState(false)
 
-  function App(){
-    const notify = () => toast("Wow so easy !");
-
-    return (
-      <div>
-        <button onClick={notify}>Notify !</button>
-        <ToastContainer />
-      </div>
-    );
+  const onClose = () => {
+    console.log('onClose')
+    setIsOpen(false)
   }
-```
 
-:::important Important
-Remember to render the `ToastContainer` *once* in your application tree. 
-If you can't figure out where to put it, rendering it in the application root would be the best bet.
-:::
+  return (
+    <div>
+      <button className="w-full mx-auto" onClick={() => setIsOpen(!isOpen)}>
+        Open Popup
+      </button>
+      <PopupContainer
+        animation="bounce"
+        open={isOpen}
+        closeOnEscape={true}
+        closeOnOutsideClick={true}
+        closeButton={true}
+        onClose={onClose}
+      >
+        Say Hello to React-Poupify !!
+      </PopupContainer>
+    </div>
+  )
+}
+
+export default ExampleComponent
+```

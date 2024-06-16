@@ -1,0 +1,38 @@
+.button {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 0px;
+}
+
+.backdrop {
+  position: fixed;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(6px);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup {
+  background: white;
+  border-color: black;
+  color: black;
+  padding: 20px;
+  border-radius: 5px;
+  max-width: 500px;
+  z-index: 999;
+  position: relative;
+}
