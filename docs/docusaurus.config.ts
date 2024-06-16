@@ -4,10 +4,10 @@ import type * as Preset from '@docusaurus/preset-classic'
 
 const config: Config = {
   title: 'React-Popupify',
-  tagline: 'Dinosaurs are cool',
+  tagline: 'A simple and customizable popup library for React',
   favicon: 'img/favicon.ico',
-  url: 'https://your-docusaurus-site.example.com',
-  baseUrl: '/react-popupify/',
+  url: 'https://docs-react-popupify.onrender.com/',
+  baseUrl: '/',
   baseUrlIssueBanner: true,
   organizationName: 'Vidit-Kushwaha',
   projectName: 'react-poupify',
