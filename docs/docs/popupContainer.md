@@ -6,7 +6,7 @@ sidebar_label: PopupContainer
 
 ## Overview
 
-The `PopupContainer` component is a higher-order React component designed to manage and display popup windows. It extends the `Popup` component functionality by providing a container that handles rendering within a specified DOM element (defaulting to a `div` with the ID `popup-root`). This component offers additional customization for backdrops and integrates various popup properties for a seamless user experience.
+The `PopupContainer` component is a versatile React component designed to display popup windows with customizable options for animations, auto-close behavior, and various close mechanisms. It supports nested children and can be controlled programmatically via a ref.
 
 ## Props
 
@@ -27,60 +27,6 @@ The `PopupContainer` component is a higher-order React component designed to man
 | `duration`            | `number`                                                                                            | `300`    | Duration of the animation in milliseconds.                                                 |
 | `popupClassName`      | `string`                                                                                            | N/A      | Additional class names for the popup element.                                              |
 
-### Default Props
-
-The `PopupContainer` component merges these default properties with the user-provided props:
-
-```typescript
-const defaultProps: defualtProps = {
-  autoClose: false,
-  closeOnOutsideClick: true,
-  closeOnEscape: true,
-  animation: 'fade',
-  duration: 300,
-  closeButton: true,
-}
-```
-
-## Usage Example
-
-```jsx
-import React, { useRef } from 'react'
-import PopupContainer from './PopupContainer'
-
-const ExampleComponent = () => {
-  const popupContainerRef = useRef(null)
-
-  const openPopup = () => {
-    if (popupContainerRef.current) {
-      popupContainerRef.current.open()
-    }
-  }
-
-  const closePopup = () => {
-    if (popupContainerRef.current) {
-      popupContainerRef.current.close()
-    }
-  }
-
-  return (
-    <div>
-      <button onClick={openPopup}>Open Popup</button>
-      <PopupContainer
-        ref={popupContainerRef}
-        open={false}
-        animation="fade"
-        duration={300}
-        onClose={() => console.log('Popup closed')}
-      >
-        <div>Popup content goes here</div>
-      </PopupContainer>
-    </div>
-  )
-}
-
-export default ExampleComponent
-```
 
 ## Notes
 

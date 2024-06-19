@@ -22,14 +22,15 @@ Defines the Type of animations that can be applied.
 
 Defines the properties that can be passed to the Transition component.
 
-|  Property   |       Type        | Default | Description                                                                                         |
-| :---------: | :---------------: | ------: | --------------------------------------------------------------------------------------------------- |
-| `animation` |    `Animation`    |     N/A | The type of animation to be applied. Must be one of `bounce`, `flip`, `zoom`, or `fade`.            |
-| `duration`  |     `number`      |     300 | The duration of the animation in milliseconds.                                                      |
-| `children`  | `React.ReactNode` |     N/A | The child elements that will be wrapped by the Transition component and subjected to the animation. |
-|    `in`     |     `boolean`     |     N/A | A flag to determine if the component should be in the "entered" state.                              |
-| `onEntered` |   `() => void`    |     N/A | A callback function that is called when the enter animation has completed.                          |
-| `onExited`  |   `() => void`    |     N/A | A callback function that is called when the exit animation has completed.                           |
+|  Property   |               Type                | Default | Description                                                                                         |
+| :---------: | :-------------------------------: | ------: | --------------------------------------------------------------------------------------------------- |
+| `animation` |            `Animation`            |     N/A | The type of animation to be applied. Must be one of `bounce`, `flip`, `zoom`, or `fade`.            |
+| `duration`  |             `number`              |     300 | The duration of the animation in milliseconds.                                                      |
+| `children`  |         `React.ReactNode`         |     N/A | The child elements that will be wrapped by the Transition component and subjected to the animation. |
+|    `in`     |             `boolean`             |     N/A | A flag to determine if the component should be in the "entered" state.                              |
+| `onEntered` |           `() => void`            |     N/A | A callback function that is called when the enter animation has completed.                          |
+| `onExited`  |           `() => void`            |     N/A | A callback function that is called when the exit animation has completed.                           |
+|  `nodeRef`  | `React.RefObject<HTMLDivElement>` |     N/A | Ref to child component                                                                              |
 
 ## Usage Example
 

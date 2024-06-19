@@ -40,7 +40,7 @@ const ExampleComponent = () => {
       <button className="w-full mx-auto" onClick={() => setIsOpen(!isOpen)}>
         Open Popup
       </button>
-      <PopupContainer
+      <Popup
         animation="bounce"
         open={isOpen}
         closeOnEscape={true}
@@ -49,7 +49,7 @@ const ExampleComponent = () => {
         onClose={onClose}
       >
         Say Hello to React-Poupify !!
-      </PopupContainer>
+      </Popup>
     </div>
   )
 }

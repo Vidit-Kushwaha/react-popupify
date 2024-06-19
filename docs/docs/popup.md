@@ -6,7 +6,7 @@ sidebar_label: Popup
 
 ## Overview
 
-The `Popup` component is a versatile React component designed to display popup windows with customizable options for animations, auto-close behavior, and various close mechanisms. It supports nested children and can be controlled programmatically via a ref.
+The ` Popup` component is a higher-order React component designed to manage and display popup windows. It extends the `PopupContainer` component functionality by providing a container that handles rendering within a specified DOM element (defaulting to a `div` with the ID `popup-root`). This component offers additional customization for backdrops and integrates various popup properties for a seamless user experience.
 
 ## Props
 
