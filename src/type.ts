@@ -19,12 +19,13 @@ export type TransitionProps = {
   duration?: number
   children: React.ReactNode
   in: boolean
+  nodeRef: React.RefObject<HTMLDivElement>;
   onEntered?: () => void
   onExited?: () => void
 }
 
 interface CommonOptions {
-  open?: boolean
+  open: boolean
   onClose?: () => void
   autoClose?: number | false
   closeOnOutsideClick?: boolean
@@ -35,7 +36,7 @@ interface CommonOptions {
     | React.ReactElement<CloseButtonProps>
 }
 
-export interface PopupProps extends CommonOptions {
+export interface PopupContainerProps extends CommonOptions {
   children: React.ReactNode
   popupId?: Id
   animation: Animation
@@ -43,7 +44,7 @@ export interface PopupProps extends CommonOptions {
   popupClassName?: string
 }
 
-export interface PopupContainerProps extends PopupProps {
+export interface  PopupProps extends PopupContainerProps {
   children: React.ReactNode
   backdropClassName?: string
 }

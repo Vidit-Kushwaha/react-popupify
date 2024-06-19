@@ -1,102 +1,68 @@
-// eslint-disable-next-line eslint-comments/disable-enable-pair
-/* eslint-disable react-hooks/rules-of-hooks */
 'use client'
 
-import React, {
-  forwardRef,
-  useCallback,
-  useEffect,
-  useImperativeHandle,
-  useRef,
-  useState,
-} from 'react'
-import { PopupHandle, PopupProps } from '../type'
-import useOutsideClick from '../hooks/useOutsideClick'
-import useEscapeKey from '../hooks/useEsc'
-import CloseButton from './CloseButton'
-import Transition from './Transition'
-import { DefaultConfig } from '../utils/constant'
+import React, { forwardRef, useEffect, useRef, useState } from 'react'
+import ReactDOM from 'react-dom'
+import { PopupHandle, PopupProps, defualtProps } from '../type'
+import '../styles/index.scss'
 
-type PopupPropsExtended = PopupProps & {
-  onClickClose?: (isClose: boolean) => void
+import { DefaultConfig } from '../utils/constant'
+import PopupContainer from './PopupContainer'
+
+const defaultProps: defualtProps = {
+  open: false,
+  autoClose: false,
+  closeOnOutsideClick: true,
+  closeOnEscape: true,
+  animation: 'fade',
+  duration: 300,
+  closeButton: true,
 }
 
-const Popup = forwardRef<PopupHandle, PopupPropsExtended>(
-  (
-    {
-      open = false,
-      children,
-      closeOnEscape = true,
-      closeOnOutsideClick = true,
-      closeButton = true,
-      animation,
-      duration,
-      onClose,
-      onClickClose,
-      autoClose,
-      popupClassName,
-      popupId,
-    },
-    ref
-  ) => {
+const Popup = forwardRef<HTMLDivElement, PopupProps>(
+  (props, ref) => {
+    const continerProps = { ...defaultProps, ...props }
+    const { open, backdropClassName , duration } = continerProps
+    const popupRef = useRef<PopupHandle | null>(null)
+
     const [isOpen, setIsOpen] = useState(open)
-    const rootRef = useRef<HTMLDivElement | null>(null)
-
-    useImperativeHandle(ref, () => ({
-      open: () => setIsOpen(true),
-      close: () => setIsOpen(false),
-    }))
-
-    const handleClose = useCallback(() => {
-      onClickClose && onClickClose(false)
-      onClose && onClose()
-      setIsOpen(false)
-    }, [onClose, onClickClose])
 
     useEffect(() => {
       setIsOpen(open)
+    }, [open])
 
-      if (autoClose && open) {
-        const timer = setTimeout(() => {
-          handleClose()
-        }, autoClose)
+    const getRootPopup = () => {
+      let popupElment = document.getElementById('popup-root')
 
-        return () => {
-          clearTimeout(timer)
-        }
+      if (popupElment === null) {
+        popupElment = document.createElement('div')
+        popupElment.setAttribute('id', 'popup-root')
+        document.body.appendChild(popupElment)
       }
-    }, [open, autoClose, onClose, onClickClose, handleClose])
 
-    closeOnOutsideClick && useOutsideClick(rootRef, handleClose)
-    closeOnEscape && useEscapeKey(handleClose)
-
-    const CloseButtonProps = {
-      closePopup: handleClose,
-    }
-    let Close: React.ReactNode = null
-
-    if (closeButton) {
-      if (typeof closeButton === 'function') {
-        Close = CloseButton(CloseButtonProps)
-      } else if (React.isValidElement(closeButton)) {
-        Close = React.cloneElement(closeButton, CloseButtonProps)
-      } else {
-        Close = CloseButton(CloseButtonProps)
-      }
+      return popupElment
     }
 
-    return (
-      <Transition animation={animation} in={isOpen} duration={duration}>
-        <div
-          ref={rootRef}
-          id={popupId as string}
-          className={`${DefaultConfig.CSS_NAMESPACE}_popup ${popupClassName}`}
+    const content = (
+      <div
+        ref={ref}
+        className={`${DefaultConfig.CSS_NAMESPACE}_popup ${backdropClassName}`}
+        style={{
+          visibility: open ? 'visible' : 'hidden',
+          opacity: open ? '1' : '0',
+          transition: `visibility ${duration}ms ease-in-out`,
+        }}
+      >
+        <PopupContainer
+          ref={popupRef}
+          onClickClose={() => setIsOpen(!isOpen)}
+          {...continerProps}
         >
-          {children}
-          <div className="button-close">{Close}</div>
-        </div>
-      </Transition>
+          {props.children}
+        </PopupContainer>
+      </div>
     )
+
+    return open ? ReactDOM.createPortal(content, getRootPopup()) : null
   }
 )
 
