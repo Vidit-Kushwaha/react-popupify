@@ -25,6 +25,9 @@ const getRootPopup = () => {
   return popupElement
 }
 
+/**
+ * Default properties for the Popup component.
+ */
 const defaultPopupProps: Partial<PopupProps> = {
   open: false,
   autoClose: false,
@@ -35,6 +38,17 @@ const defaultPopupProps: Partial<PopupProps> = {
   closeButton: true,
 }
 
+/**
+ * The Popup component displays a modal dialog.
+ * @param props - The properties of the Popup component.
+ * @returns The Popup component.
+ * @example
+ * ```tsx
+ * <Popup animation="bounce" duration={500} open={open} onClose={onClose}>
+ *    Hello
+ * </Popup>
+ * ```
+ */
 const Popup: ForwardRefRenderFunction<HTMLDivElement, PopupProps> = (
   props,
   ref

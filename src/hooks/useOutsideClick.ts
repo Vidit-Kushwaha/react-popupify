@@ -3,7 +3,9 @@
 import { useEffect } from 'react'
 
 /**
- * Hook that alerts clicks outside of the passed ref
+ * Hook to handle the outside click.
+ * @param ref - The reference to the HTML div element.
+ * @param handleClickOutsideCallback - The callback function to handle the outside click.
  */
 function useOutsideClick(
   ref: React.RefObject<HTMLDivElement>,

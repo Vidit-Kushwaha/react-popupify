@@ -21,6 +21,11 @@ type PopupPropsExtended = PopupContainerProps & {
   onClickClose?: (isClose: boolean) => void
 }
 
+/**
+ * The PopupContainer component displays a modal dialog.
+ * @param props - The properties of the PopupContainer component.
+ * @returns The JSX element for the PopupContainer component.
+ */
 const PopupContainer = forwardRef<PopupHandle, PopupPropsExtended>(
   (
     {

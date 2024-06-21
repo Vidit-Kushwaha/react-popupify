@@ -7,6 +7,17 @@ const enum AnimationStep {
   Exit,
 }
 
+/**
+ * The Transition component animates the entering and exiting of a component.
+ * @param props - The properties of the Transition component.
+ * @returns The JSX element for the Transition component.
+ * @example
+ * ```tsx
+ * <Transition animation="bounce" duration={500} in={open}>
+ *    <div>Hello</div>
+ * </Transition>
+ * ```
+ */
 const Transition: React.FC<TransitionProps> = ({
   animation,
   duration = 300,
