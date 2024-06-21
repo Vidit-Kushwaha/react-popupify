@@ -7,6 +7,8 @@ import '../styles/index.scss'
 
 import { DefaultConfig } from '../utils/constant'
 import PopupContainer from './PopupContainer'
+import popupManager from '../utils/popupManager'
+import { genPopupId } from '../utils/genPopupId'
 
 const defaultProps: defualtProps = {
   open: false,
@@ -21,10 +23,30 @@ const defaultProps: defualtProps = {
 const Popup = forwardRef<HTMLDivElement, PopupProps>(
   (props, ref) => {
     const continerProps = { ...defaultProps, ...props }
-    const { open, backdropClassName , duration } = continerProps
+    const { open, backdropClassName , duration, popupId } = continerProps
     const popupRef = useRef<PopupHandle | null>(null)
 
     const [isOpen, setIsOpen] = useState(open)
+
+    const id  : string  = popupId || genPopupId()
+
+    useEffect(() => {
+      popupManager.registerPopup(id!, {
+        show: () => {
+          setIsOpen(true);
+        },
+        hide: () => {
+          setIsOpen(false);
+        },
+      });
+  
+      return () => {
+        popupManager.unregisterPopup(id!);
+      };
+    }, [id]);
+
+    useEffect(() => {
+    }, [isOpen]);
 
     useEffect(() => {
       setIsOpen(open)
@@ -47,8 +69,8 @@ const Popup = forwardRef<HTMLDivElement, PopupProps>(
         ref={ref}
         className={`${DefaultConfig.CSS_NAMESPACE}_popup ${backdropClassName}`}
         style={{
-          visibility: open ? 'visible' : 'hidden',
-          opacity: open ? '1' : '0',
+          visibility: isOpen ? 'visible' : 'hidden',
+          opacity: isOpen ? '1' : '0',
           transition: `visibility ${duration}ms ease-in-out`,
         }}
       >
@@ -62,7 +84,7 @@ const Popup = forwardRef<HTMLDivElement, PopupProps>(
       </div>
     )
 
-    return open ? ReactDOM.createPortal(content, getRootPopup()) : null
+    return isOpen ? ReactDOM.createPortal(content, getRootPopup()) : null
   }
 )
 

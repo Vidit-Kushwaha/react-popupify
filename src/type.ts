@@ -10,7 +10,7 @@ export interface CloseButtonProps {
   ariaLabel?: string
 }
 
-export type Id = number | string
+export type Id = string
 
 export type Animation = 'bounce' | 'flip' | 'zoom' | 'fade'
 
@@ -25,7 +25,7 @@ export type TransitionProps = {
 }
 
 interface CommonOptions {
-  open: boolean
+  open?: boolean
   onClose?: () => void
   autoClose?: number | false
   closeOnOutsideClick?: boolean

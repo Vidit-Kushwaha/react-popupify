@@ -43,16 +43,19 @@ const PopupContainer = forwardRef<PopupHandle, PopupPropsExtended>(
     const rootRef = useRef<HTMLDivElement | null>(null)
 
     useImperativeHandle(ref, () => ({
-      open: () => setIsOpen(true),
-      close: () => setIsOpen(false),
+      open: () => {
+        setIsOpen(true)
+      },
+      close: () => {
+        setIsOpen(false)
+      },
     }))
 
     const handleClose = useCallback(() => {
-      if (!isOpen) return
       onClickClose && onClickClose(false)
       onClose && onClose()
       setIsOpen(false)
-    }, [onClose, onClickClose, isOpen])
+    }, [onClose, onClickClose])
 
     useEffect(() => {
       setIsOpen(open)
@@ -66,7 +69,7 @@ const PopupContainer = forwardRef<PopupHandle, PopupPropsExtended>(
           clearTimeout(timer)
         }
       }
-    }, [open, autoClose, onClose, onClickClose, handleClose])
+    }, [open, autoClose, handleClose])
 
     closeOnOutsideClick && useOutsideClick(rootRef, handleClose)
     closeOnEscape && useEscapeKey(handleClose)
@@ -78,7 +81,7 @@ const PopupContainer = forwardRef<PopupHandle, PopupPropsExtended>(
 
     if (closeButton) {
       if (typeof closeButton === 'function') {
-        Close = CloseButton(CloseButtonProps)
+        Close = closeButton(CloseButtonProps)
       } else if (React.isValidElement(closeButton)) {
         Close = React.cloneElement(closeButton, CloseButtonProps)
       } else {
