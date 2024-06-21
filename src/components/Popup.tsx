@@ -1,16 +1,31 @@
 'use client'
 
-import React, { forwardRef, useEffect, useRef, useState } from 'react'
+import React, {
+  ForwardRefRenderFunction,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import ReactDOM from 'react-dom'
-import { PopupHandle, PopupProps, defualtProps } from '../type'
-import '../styles/index.scss'
-
+import { PopupHandle, PopupProps } from '../type'
 import { DefaultConfig } from '../utils/constant'
 import PopupContainer from './PopupContainer'
 import popupManager from '../utils/popupManager'
 import { genPopupId } from '../utils/genPopupId'
 
-const defaultProps: defualtProps = {
+const getRootPopup = () => {
+  let popupElement = document.getElementById('popup-root')
+
+  if (!popupElement) {
+    popupElement = document.createElement('div')
+    popupElement.setAttribute('id', 'popup-root')
+    document.body.appendChild(popupElement)
+  }
+
+  return popupElement
+}
+
+const defaultPopupProps: Partial<PopupProps> = {
   open: false,
   autoClose: false,
   closeOnOutsideClick: true,
@@ -20,74 +35,63 @@ const defaultProps: defualtProps = {
   closeButton: true,
 }
 
-const Popup = forwardRef<HTMLDivElement, PopupProps>(
-  (props, ref) => {
-    const continerProps = { ...defaultProps, ...props }
-    const { open, backdropClassName , duration, popupId } = continerProps
-    const popupRef = useRef<PopupHandle | null>(null)
+const Popup: ForwardRefRenderFunction<HTMLDivElement, PopupProps> = (
+  props,
+  ref
+) => {
+  const containerProps = { ...defaultPopupProps, ...props }
+  const { open, backdropClassName, popupId } = containerProps
 
-    const [isOpen, setIsOpen] = useState(open)
+  const [isOpen, setIsOpen] = useState(open)
+  const [additionalProps, setAdditionalProps] = useState<Partial<PopupProps>>(
+    {}
+  )
+  const popupRef = useRef<PopupHandle | null>(null)
 
-    const id  : string  = popupId || genPopupId()
+  const id: string = popupId || genPopupId()
 
-    useEffect(() => {
-      popupManager.registerPopup(id!, {
-        show: () => {
-          setIsOpen(true);
-        },
-        hide: () => {
-          setIsOpen(false);
-        },
-      });
-  
-      return () => {
-        popupManager.unregisterPopup(id!);
-      };
-    }, [id]);
+  useEffect(() => {
+    popupManager.registerPopup(id, {
+      show: (props?: Partial<PopupProps>) => {
+        if (props) setAdditionalProps(props)
+        setIsOpen(true)
+      },
+      hide: () => setIsOpen(false),
+    })
 
-    useEffect(() => {
-    }, [isOpen]);
+    return () => popupManager.unregisterPopup(id)
+  }, [id])
 
-    useEffect(() => {
-      setIsOpen(open)
-    }, [open])
+  useEffect(() => {
+    setIsOpen(open)
+  }, [open])
 
-    const getRootPopup = () => {
-      let popupElment = document.getElementById('popup-root')
-
-      if (popupElment === null) {
-        popupElment = document.createElement('div')
-        popupElment.setAttribute('id', 'popup-root')
-        document.body.appendChild(popupElment)
-      }
-
-      return popupElment
+  useEffect(() => {
+    if (!isOpen) {
+      setAdditionalProps({})
     }
+  }, [isOpen])
 
-    const content = (
-      <div
-        ref={ref}
-        className={`${DefaultConfig.CSS_NAMESPACE}_popup ${backdropClassName}`}
-        style={{
-          visibility: isOpen ? 'visible' : 'hidden',
-          opacity: isOpen ? '1' : '0',
-          transition: `visibility ${duration}ms ease-in-out`,
-        }}
+  const mergedProps = { ...containerProps, ...additionalProps }
+
+  const content = (
+    <div
+      ref={ref}
+      className={`${DefaultConfig.CSS_NAMESPACE}_popup ${backdropClassName}`}
+    >
+      <PopupContainer
+        ref={popupRef}
+        onClickClose={() => setIsOpen(false)}
+        {...mergedProps}
       >
-        <PopupContainer
-          ref={popupRef}
-          onClickClose={() => setIsOpen(!isOpen)}
-          {...continerProps}
-        >
-          {props.children}
-        </PopupContainer>
-      </div>
-    )
+        {props.children}
+      </PopupContainer>
+    </div>
+  )
 
-    return isOpen ? ReactDOM.createPortal(content, getRootPopup()) : null
-  }
-)
+  return isOpen ? ReactDOM.createPortal(content, getRootPopup()) : null
+}
 
 Popup.displayName = 'Popup'
 
-export default Popup
+export default React.forwardRef(Popup)

@@ -14,18 +14,18 @@ export type Id = string
 
 export type Animation = 'bounce' | 'flip' | 'zoom' | 'fade'
 
-export type TransitionProps = {
+export interface TransitionProps {
   animation: Animation
   duration?: number
   children: React.ReactNode
   in: boolean
-  nodeRef: React.RefObject<HTMLDivElement>;
+  nodeRef: React.RefObject<HTMLDivElement>
   onEntered?: () => void
   onExited?: () => void
 }
 
 interface CommonOptions {
-  open?: boolean
+  open: boolean
   onClose?: () => void
   autoClose?: number | false
   closeOnOutsideClick?: boolean
@@ -44,12 +44,12 @@ export interface PopupContainerProps extends CommonOptions {
   popupClassName?: string
 }
 
-export interface  PopupProps extends PopupContainerProps {
-  children: React.ReactNode
+export interface PopupProps extends PopupContainerProps {
   backdropClassName?: string
 }
 
-export interface defualtProps extends CommonOptions {
-  animation: Animation
-  duration: number
+export interface ShowPopup extends CommonOptions {
+  animation?: Animation
+  duration?: number
+  popupClassName?: string
 }

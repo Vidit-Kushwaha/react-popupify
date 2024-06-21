@@ -1,4 +1,5 @@
 export { Transition, Popup, PopupContainer } from './components'
+export { showPopup } from './core'
 export type {
   PopupContainerProps,
   PopupProps,
@@ -7,5 +8,5 @@ export type {
   Id,
   Animation,
   CloseButtonProps,
-  defualtProps,
+  ShowPopup,
 } from './type'

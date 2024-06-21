@@ -94,8 +94,6 @@ const PopupContainer = forwardRef<PopupHandle, PopupPropsExtended>(
         animation={animation}
         in={isOpen}
         duration={duration}
-        onEntered={() => console.log('Entered')}
-        onExited={() => console.log('Exited')}
         nodeRef={rootRef}
       >
         <div

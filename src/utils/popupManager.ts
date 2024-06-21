@@ -1,6 +1,7 @@
-// src/utils/popupManager.ts
+import { PopupProps } from '../type'
+
 type PopupComponent = {
-  show: () => void
+  show: (props?: Partial<PopupProps>) => void
   hide: () => void
 }
 
@@ -20,10 +21,10 @@ class PopupManager {
     this.notifyListeners()
   }
 
-  showPopup(id: string) {
-    if (this.popups[id]) {
-      this.popups[id].show()
-      this.notifyListeners()
+  showPopup(id: string, props?: Partial<PopupProps>) {
+    const action = this.popups[id]
+    if (action) {
+      action.show(props)
     }
   }
 
@@ -48,4 +49,5 @@ class PopupManager {
 }
 
 const popupManager = new PopupManager()
+
 export default popupManager
