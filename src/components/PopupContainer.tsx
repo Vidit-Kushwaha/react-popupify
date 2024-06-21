@@ -3,7 +3,7 @@
 'use client'
 
 import React, {
-  forwardRef,
+  ForwardRefRenderFunction,
   useCallback,
   useEffect,
   useImperativeHandle,
@@ -26,94 +26,95 @@ type PopupPropsExtended = PopupContainerProps & {
  * @param props - The properties of the PopupContainer component.
  * @returns The JSX element for the PopupContainer component.
  */
-const PopupContainer = forwardRef<PopupHandle, PopupPropsExtended>(
-  (
-    {
-      open = false,
-      children,
-      closeOnEscape = true,
-      closeOnOutsideClick = true,
-      closeButton = true,
-      animation,
-      duration,
-      onClose,
-      onClickClose,
-      autoClose,
-      popupClassName,
-      popupId,
+const PopupContainer: ForwardRefRenderFunction<
+  PopupHandle,
+  PopupPropsExtended
+> = (
+  {
+    open = false,
+    children,
+    closeOnEscape = true,
+    closeOnOutsideClick = true,
+    closeButton = true,
+    animation,
+    duration,
+    onClose,
+    onClickClose,
+    autoClose,
+    popupClassName,
+    popupId,
+  },
+  ref
+) => {
+  const [isOpen, setIsOpen] = useState(open)
+  const rootRef = useRef<HTMLDivElement | null>(null)
+
+  useImperativeHandle(ref, () => ({
+    open: () => {
+      setIsOpen(true)
     },
-    ref
-  ) => {
-    const [isOpen, setIsOpen] = useState(open)
-    const rootRef = useRef<HTMLDivElement | null>(null)
-
-    useImperativeHandle(ref, () => ({
-      open: () => {
-        setIsOpen(true)
-      },
-      close: () => {
-        setIsOpen(false)
-      },
-    }))
-
-    const handleClose = useCallback(() => {
-      onClickClose && onClickClose(false)
-      onClose && onClose()
+    close: () => {
       setIsOpen(false)
-    }, [onClose, onClickClose])
+    },
+  }))
 
-    useEffect(() => {
-      setIsOpen(open)
+  const handleClose = useCallback(() => {
+    onClickClose && onClickClose(false)
+    onClose && onClose()
+    setIsOpen(false)
+  }, [onClose, onClickClose])
 
-      if (autoClose && open) {
-        const timer = setTimeout(() => {
-          handleClose()
-        }, autoClose)
+  useEffect(() => {
+    setIsOpen(open)
 
-        return () => {
-          clearTimeout(timer)
-        }
-      }
-    }, [open, autoClose, handleClose])
+    if (autoClose && open) {
+      const timer = setTimeout(() => {
+        handleClose()
+      }, autoClose)
 
-    closeOnOutsideClick && useOutsideClick(rootRef, handleClose)
-    closeOnEscape && useEscapeKey(handleClose)
-
-    const CloseButtonProps = {
-      closePopup: handleClose,
-    }
-    let Close: React.ReactNode = null
-
-    if (closeButton) {
-      if (typeof closeButton === 'function') {
-        Close = closeButton(CloseButtonProps)
-      } else if (React.isValidElement(closeButton)) {
-        Close = React.cloneElement(closeButton, CloseButtonProps)
-      } else {
-        Close = CloseButton(CloseButtonProps)
+      return () => {
+        clearTimeout(timer)
       }
     }
+  }, [open, autoClose, handleClose])
 
-    return (
-      <Transition
-        animation={animation}
-        in={isOpen}
-        duration={duration}
-        nodeRef={rootRef}
-      >
-        <div
-          ref={rootRef}
-          id={popupId as string}
-          className={`${DefaultConfig.CSS_NAMESPACE}_popup-container !${popupClassName?.replaceAll(' ', ' !')} `}
-        >
-          {children}
-          <div className="button-close">{Close}</div>
-        </div>
-      </Transition>
-    )
+  closeOnOutsideClick && useOutsideClick(rootRef, handleClose)
+  closeOnEscape && useEscapeKey(handleClose)
+
+  const CloseButtonProps = {
+    closePopup: handleClose,
   }
-)
+  let Close: React.ReactNode = null
+
+  if (closeButton) {
+    if (typeof closeButton === 'function') {
+      Close = closeButton(CloseButtonProps)
+    } else if (React.isValidElement(closeButton)) {
+      Close = React.cloneElement(closeButton, CloseButtonProps)
+    } else {
+      Close = CloseButton(CloseButtonProps)
+    }
+  }
+
+  return (
+    <Transition
+      animation={animation}
+      in={isOpen}
+      duration={duration}
+      nodeRef={rootRef}
+    >
+      <div
+        ref={rootRef}
+        id={popupId as string}
+        className={`${DefaultConfig.CSS_NAMESPACE}_popup-container !${popupClassName?.replaceAll(' ', ' !')} `}
+      >
+        {children}
+        <div className="button-close">{Close}</div>
+      </div>
+    </Transition>
+  )
+}
 
 PopupContainer.displayName = 'PopupContainer'
 
-export default PopupContainer
+export default React.forwardRef(PopupContainer)
