@@ -10,14 +10,14 @@ import React, {
   useRef,
   useState,
 } from 'react'
-import { PopupHandle, PopupProps } from '../type'
+import { PopupContainerProps, PopupHandle } from '../type'
 import useOutsideClick from '../hooks/useOutsideClick'
 import useEscapeKey from '../hooks/useEsc'
 import CloseButton from './CloseButton'
 import Transition from './Transition'
 import { DefaultConfig } from '../utils/constant'
 
-type PopupPropsExtended = PopupProps & {
+type PopupPropsExtended = PopupContainerProps & {
   onClickClose?: (isClose: boolean) => void
 }
 
