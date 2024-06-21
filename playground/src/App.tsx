@@ -1,44 +1,33 @@
-import { useState } from 'react'
+import InstallPopup from './components/InstallPopup'
+import '../../src/styles/index.scss'
 import Popup from '../../src/components/Popup'
+import { useState } from 'react'
+import { showPopup } from '../../src'
 
-function App() {
-  const [isOpen, setIsOpen] = useState(false)
+const App: React.FC = () => {
+  const [open, setOpen] = useState(false)
 
-  const onClose = () => {
-    console.log('onClose')
-    setIsOpen(false)
-  }
+  const onClose = () => setOpen(false)
 
   return (
-    <>
-      <button className="w-full mx-auto" onClick={() => setIsOpen(!isOpen)}>
-        Open Popup
-      </button>
-      <Popup
-        animation="flip"
-        duration={4000}
-        open={isOpen}
-        closeOnEscape={true}
-        closeOnOutsideClick={true}
-        // closeButton={true}
-        onClose={onClose}
-        backdropClassName="bg-opacity-50 fixed inset-0"
-        popupClassName="bg-white rounded-lg shadow-xl z-10 p-4 !mx-10"
+    <div>
+      <button
+        onClick={() =>
+          showPopup('examplePopupId', {
+            open: true,
+            animation: 'bounce',
+            duration: 500,
+          })
+        }
       >
-        <div className="h-15 w-15">
-          <svg
-            viewBox="0 0 32 32"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M2 10.555h28v9.335H16v1.556H9.778v-1.557H2Zm1.556 7.779h3.111v-4.668h1.555v4.667h1.556v-6.222H3.556Zm7.778-6.223v7.779h3.111v-1.556h3.111v-6.223Zm3.111 1.556H16v3.112h-1.556Zm4.667-1.556v6.223h3.111v-4.668h1.556v4.667h1.556v-4.667h1.556v4.667h1.556v-6.222Z"
-              style={{ fill: '#cb3837' }}
-            />
-          </svg>
-        </div>
-        <p className="text-black">npm i react-popupify</p>
+        Show Popup
+      </button>
+      <button onClick={() => setOpen(true)}>Show PopupC</button>
+      <Popup animation="bounce" duration={500} open={open} onClose={onClose}>
+        Hello
       </Popup>
-    </>
+      <InstallPopup />
+    </div>
   )
 }
 

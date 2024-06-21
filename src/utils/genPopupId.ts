@@ -1,3 +1,3 @@
-let POPUP_ID = 1;
+let POPUP_ID = 1
 
-export const genPopupId = () => `${POPUP_ID++}`;
+export const genPopupId = () => `${POPUP_ID++}`

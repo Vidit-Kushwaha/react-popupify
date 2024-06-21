@@ -1,2 +1,1 @@
-export * from "./showPopup";
-
+export * from './showPopup'
