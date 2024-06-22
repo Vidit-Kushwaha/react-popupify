@@ -16,6 +16,8 @@ import useEscapeKey from '../hooks/useEsc'
 import CloseButton from './CloseButton'
 import Transition from './Transition'
 import { DefaultConfig } from '../utils/constant'
+import useScrollLock from '../hooks/useScrollLock'
+import useFocusTrap from '../hooks/useFocusTrap'
 
 type PopupPropsExtended = PopupContainerProps & {
   onClickClose?: (isClose: boolean) => void
@@ -80,6 +82,9 @@ const PopupContainer: ForwardRefRenderFunction<
 
   closeOnOutsideClick && useOutsideClick(rootRef, handleClose)
   closeOnEscape && useEscapeKey(handleClose)
+
+  useScrollLock(isOpen)
+  useFocusTrap(rootRef, isOpen)
 
   const CloseButtonProps = {
     closePopup: handleClose,
