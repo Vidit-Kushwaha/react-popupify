@@ -80,9 +80,8 @@ const PopupContainer: ForwardRefRenderFunction<
     }
   }, [open, autoClose, handleClose])
 
-  closeOnOutsideClick && useOutsideClick(rootRef, handleClose)
-  closeOnEscape && useEscapeKey(handleClose)
-
+  useOutsideClick(rootRef, handleClose, closeOnOutsideClick)
+  useEscapeKey(handleClose, closeOnEscape)
   useScrollLock(isOpen)
   useFocusTrap(rootRef, isOpen)
 
