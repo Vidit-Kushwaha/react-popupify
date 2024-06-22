@@ -5,6 +5,7 @@
   "author": "Vidit Kushwaha <connect.viditkushwaha@gmail.com> (https://viditkushwaha.com/)",
   "license": "MIT",
   "scripts": {
+    "dev": "cd playground && npm run dev",
     "start": "webpack serve --config webpack/webpack.config.js --env env=dev",
     "clean": "rimraf dist",
     "build": "npm run clean && npm run build:bundle",
@@ -15,8 +16,11 @@
   },
   "keywords": [
     "react",
-    "react-popupify",
     "popup",
+    "modal",
+    "react-popup",
+    "react-model",
+    "react-popupify",
     "react-component"
   ],
   "peerDependencies": {
@@ -61,7 +65,7 @@
   "bugs": {
     "url": "https://github.com/Vidit-Kushwaha/react-popupify/issues"
   },
-  "homepage": "https://github.com/Vidit-Kushwaha/react-popupify",
+  "homepage": "https://docs-react-popupify.onrender.com/",
   "files": [
     "/dist"
   ],
