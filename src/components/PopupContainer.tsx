@@ -110,7 +110,7 @@ const PopupContainer: ForwardRefRenderFunction<
       <div
         ref={rootRef}
         id={popupId as string}
-        className={`${DefaultConfig.CSS_NAMESPACE}_popup-container !${popupClassName?.replaceAll(' ', ' !')} `}
+        className={`${DefaultConfig.CSS_NAMESPACE}_popup-container ${popupClassName} `}
       >
         {children}
         <div className="button-close">{Close}</div>
