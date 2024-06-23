@@ -60,7 +60,7 @@
   "source": "src/index.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Vidit-Kushwaha/react-popupify.git"
+    "url": "git+https://github.com/Vidit-Kushwaha/react-popupify.git"
   },
   "bugs": {
     "url": "https://github.com/Vidit-Kushwaha/react-popupify/issues"
