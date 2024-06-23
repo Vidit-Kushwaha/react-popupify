@@ -1,19 +1,28 @@
 # React-Popupify
 
 
-![NPM Version](https://img.shields.io/npm/v/react-popupify?style=for-the-badge&cacheSeconds=86400)
-![NPM Downloads](https://img.shields.io/npm/dw/react-popupify?style=for-the-badge&cacheSeconds=86400)
-![npm bundle size](https://img.shields.io/bundlephobia/min/react-popupify?style=for-the-badge&cacheSeconds=86400)
-![GitHub License](https://img.shields.io/github/license/Vidit-Kushwaha/react-popupify?style=for-the-badge&cacheSeconds=86400)
+![NPM Version](https://img.shields.io/npm/v/react-popupify?style=for-the-badge)
+![NPM Downloads](https://img.shields.io/npm/dw/react-popupify?style=for-the-badge)
+![npm bundle size](https://img.shields.io/bundlephobia/min/react-popupify?style=for-the-badge)
+![GitHub License](https://img.shields.io/github/license/Vidit-Kushwaha/react-popupify?style=for-the-badge)
 
 ## Table of Contents
 
-- [Installation](#installation)
 - [Features](#features)
+- [Installation](#installation)
 - [Documentation](#documentation)
 - [Contributing](#contributing)
 - [Release Notes](#release-notes)
 - [License](#license)
+
+## Features 
+
+- **Easy Integration**: Simple and intuitive API for quick integration.
+- **Custom Animations**: Supports various animation types such as `bounce`, `flip`, `zoom`, and `fade`.
+- **Auto-Close**: Option to auto-close the popup after a specified duration.
+- **Customizable Close Button**: Flexible options for close button customization.
+- **Event Handlers**: Callbacks for when the popup is entered and exited.
+- **Esc Key and Outside Click**: Configurable options to close the popup using the escape key or clicking outside.
 
 ## Installation
 
@@ -27,14 +36,53 @@ Adding css
 import "react-popupify/dist/bundle.css";
 ```
 
-## Features 
+### The Gist
 
-- **Easy Integration**: Simple and intuitive API for quick integration.
-- **Custom Animations**: Supports various animation types such as `bounce`, `flip`, `zoom`, and `fade`.
-- **Auto-Close**: Option to auto-close the popup after a specified duration.
-- **Customizable Close Button**: Flexible options for close button customization.
-- **Event Handlers**: Callbacks for when the popup is entered and exited.
-- **Esc Key and Outside Click**: Configurable options to close the popup using the escape key or clicking outside.
+```jsx
+
+  import React from 'react';
+
+  import { showPopup } from 'react-popupify'
+  import "react-popupify/dist/bundle.css";
+  
+  const App = () => {
+
+  const popup = () => showPopup('customPopupId', { open: true })
+
+    return (
+      <div>
+        <button onClick={popup}>Show Popup!</button>
+        <CustomPopup />
+      </div>
+    );
+  }
+
+export default App
+```
+
+./component/CustomPopup.tsx
+```jsx
+  import React from 'react';
+  import { Popup } from 'react-popupify';
+
+  const CustomPopup = () => {
+  
+    return (
+          <Popup
+            popupId="customPopupId"
+            animation="bounce"
+            open={false}
+            closeOnEscape={true}
+            closeOnOutsideClick={true}
+            closeButton={true}
+        >
+          Say Hello to React-Poupify !!
+        </Popup>
+    );
+  }
+
+export default CustomPopup
+```
 
 ## Documentation
 
