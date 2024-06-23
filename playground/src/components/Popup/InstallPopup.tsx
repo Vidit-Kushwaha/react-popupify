@@ -20,8 +20,8 @@ const InstallPopup = () => {
       closeButton={true}
       onClose={onClose}
       open={false}
-      backdropClassName="bg-opacity-50 fixed inset-0"
-      popupClassName="bg-white rounded-lg shadow-xl p-4 !mx-10"
+      backdropClassName="bg-opacity-50"
+      popupClassName="bg-white rounded-lg shadow-xl p-4 !mx-10 z-50"
     >
       <div className="h-15 w-15">
         <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
