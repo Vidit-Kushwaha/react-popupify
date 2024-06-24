@@ -1,7 +1,3 @@
-// eslint-disable-next-line eslint-comments/disable-enable-pair
-/* eslint-disable react-hooks/rules-of-hooks */
-'use client'
-
 import React, {
   ForwardRefRenderFunction,
   useCallback,

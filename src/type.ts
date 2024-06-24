@@ -177,4 +177,9 @@ export interface ShowPopup extends CommonOptions {
    * Additional class name for the popup.
    */
   popupClassName?: string
+
+    /**
+   * Additional class name for the backdrop.
+   */
+  backdropClassName?: string
 }
