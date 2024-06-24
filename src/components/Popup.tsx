@@ -12,6 +12,7 @@ import { DefaultConfig } from '../utils/constant'
 import PopupContainer from './PopupContainer'
 import popupManager from '../utils/popupManager'
 import { genPopupId } from '../utils/genPopupId'
+import '../styles/index.scss'
 
 const getRootPopup = () => {
   let popupElement = document.getElementById('popup-root')
