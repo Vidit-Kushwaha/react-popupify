@@ -12,27 +12,56 @@
   border-radius: 0px;
 }
 
-.backdrop {
-  position: fixed;
-  overflow: hidden;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  backdrop-filter: blur(6px);
-  z-index: 100;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.popup-backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
-.popup {
-  background: white;
-  border-color: black;
-  color: black;
-  padding: 20px;
+.popup-container {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
+  z-index: 50;
+}
+
+
+
+pre, code {
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #2d2d2d;
+  color: #f8f8f2; 
   border-radius: 5px;
-  max-width: 500px;
-  z-index: 999;
-  position: relative;
+  overflow-x: auto;
+  line-height: 1.75rem;
+}
+
+pre {
+  white-space: pre-wrap; 
+}
+
+.code-keyword {
+  color: #E2725B; /* Light blue for keywords */
+  font-weight: bold;
+}
+
+.code-string {
+  color: #e6db74; /* Light yellow for strings */
+}
+
+.code-number {
+  color: #ae81ff; /* Light purple for numbers */
+}
+
+.code-punctuation {
+  color: #f8f8f2; /* Light text color */
+}
+
+.code-function {
+  color: #a6e22e; /* Light green for functions */
+}
+
+.code-variable {
+  color: #f92672; /* Light pink for variables */
 }
