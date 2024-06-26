@@ -39,7 +39,7 @@ const config: Config = {
         docs: {
           routeBasePath: "/",
           sidebarPath: './sidebars.ts',
-          editUrl: 'https://github.com/vidit-kushwaha/react-popupify/',
+          editUrl: 'https://github.com/Vidit-Kushwaha/react-popupify/blob/main/docs/',
         },
         theme: {
           customCss: './src/css/custom.css',
