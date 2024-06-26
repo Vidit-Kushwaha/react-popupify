@@ -62,5 +62,5 @@ export default ExampleComponent
 
 ## Notes
 
-N/AThe component relies on DefaultConfig.CSS_NAMESPACE for generating the class names for animations. Ensure that the appropriate CSS classes are defined in your stylesheets.
-N/AThe useLayoutEffect and useEffect hooks are used to handle the animations for entering and exiting the DOM respectively.
+- The component relies on DefaultConfig.CSS_NAMESPACE for generating the class names for animations. Ensure that the appropriate CSS classes are defined in your stylesheets.
+- The useLayoutEffect and useEffect hooks are used to handle the animations for entering and exiting the DOM respectively.

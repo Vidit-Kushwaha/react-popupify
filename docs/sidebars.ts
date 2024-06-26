@@ -8,10 +8,11 @@ const sidebars: SidebarsConfig = {
       "installation",
     ],
     ["API Reference"]: [
-      "popupContainer",
       "popup",
+      "popupContainer",
       "closeButton",
       "transition",
+      "showPopup",
     ],
 
   }
