@@ -91,6 +91,7 @@ const Popup: ForwardRefRenderFunction<HTMLDivElement, PopupProps> = (
     <div
       ref={ref}
       className={`${DefaultConfig.CSS_NAMESPACE}_popup ${backdropClassName}`}
+      data-testid="test-popup"
     >
       <PopupContainer
         ref={popupRef}
