@@ -6,6 +6,8 @@
 ![npm bundle size](https://img.shields.io/bundlephobia/min/react-popupify?style=for-the-badge)
 ![GitHub License](https://img.shields.io/github/license/Vidit-Kushwaha/react-popupify?style=for-the-badge)
 
+<img src="https://i.ibb.co/m6t3dQc/download-1.gif" alt="GIF" height="650">
+
 ## Table of Contents
 
 - [Features](#features)
@@ -97,7 +99,7 @@ We welcome contributions! Whether you're a seasoned developer or a curious enthu
 -   **Documentation:** Improve the project's documentation and website.
 -   **Spread the word:** Share the project with your network and help it grow!
 
-You can see contribution guidelines [here](https://github.com/Vidit-Kushwaha/react-popupify/blob/main/CONTRIBUTING)
+You can see contribution guidelines [here](https://github.com/Vidit-Kushwaha/react-popupify/blob/main/CONTRIBUTING.md)
 
 ## Release Notes
 
