@@ -6,7 +6,6 @@
   "license": "MIT",
   "scripts": {
     "dev": "cd playground && npm run dev",
-    "start": "webpack serve --config webpack/webpack.config.js --env env=dev",
     "clean": "rimraf dist",
     "build": "npm run clean && npm run build:bundle",
     "build:bundle": "microbundle --jsx React.createElement --jsxFragment React.Fragment",
