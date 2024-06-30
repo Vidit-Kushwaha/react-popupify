@@ -16,5 +16,8 @@ const config: Config.InitialOptions = {
     '\\.(css|less|sass|scss)$': 'identity-obj-proxy',
     '^.+\\.svg$': 'jest-transformer-svg',
   },
+  collectCoverage: true,
+  coverageReporters: ['lcov', 'text'],
+  coverageDirectory: './coverage'
 }
 export default config
