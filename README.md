@@ -5,6 +5,7 @@
 ![NPM Downloads](https://img.shields.io/npm/dw/react-popupify?style=for-the-badge)
 ![npm bundle size](https://img.shields.io/bundlephobia/min/react-popupify?style=for-the-badge)
 ![GitHub License](https://img.shields.io/github/license/Vidit-Kushwaha/react-popupify?style=for-the-badge)
+![Coveralls](https://img.shields.io/coverallsCoverage/github/Vidit-Kushwaha/react-popupify?style=for-the-badge)
 
 <img src="https://i.ibb.co/m6t3dQc/download-1.gif" alt="GIF" height="650">
 
