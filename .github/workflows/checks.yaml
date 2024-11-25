@@ -1,0 +1,25 @@
+name: Checks
+on:
+  pull_request:
+    branches: [ main ]
+    types: [opened, synchronize, reopened]
+
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+
+      - name: NPM Install
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Run Eslint
+        run: npm run lint
+
+      - name: Run Test
+        run: npm run test
